@@ -1,0 +1,4 @@
+random-forest
+support-vector-machine
+naive-bayes
+naive-bayes-1
