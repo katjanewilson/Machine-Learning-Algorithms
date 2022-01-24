@@ -8,3 +8,5 @@ plot
 data-split
 rf-on-the-training-set
 validation-set
+margin
+bootstrap

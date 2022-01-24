@@ -7,6 +7,8 @@ site: bookdown::bookdown_site
 
 # Random Forest
 
+Bootstrap Aggregation used on the training set, to create many, uncorrelated trees. Sample with replacement size N from the set, and each tree is a random sample. Or, you can do feature randomization. The class with the most votes becomes the prediction.
+
 ## plot 
 
 ```{r}
@@ -52,13 +54,17 @@ print(rf1)
 ### Variable Importance 
 
 MeanDecrease Accuracy: estimate of the loss in prediction performane when that particular variable is omitted from training set. 
-MeanDecrease Gini: node impurity. High purity means each node contains only elements of a single class. Decase in Gini when that feature is omitted leads to understanding of how important that feature is to split the data correctly.
+MeanDecrease Gini: node impurity. High purity means each node contains only elements of a single class. Decrease in Gini when that feature is omitted-> shows how important that feature is to split the data correctly.
+
+Importance constructed by shuffling the variable of interest in the out of sample bag, keeping all other variables the same. The random shuffling means that, on average, shuffled variable has no predictive power. This is a measure of how removing a variable decreases accuracy. Measure the decrease in prediction accuracy on the shuffled data. X is important for predicting Y at over Z value, but not for predicting less than Z value.
 
 ```{r}
 varImpPlot(rf1)
 ```
 
-## margin of predictions 
+## Margin
+
+Margin = proportion of notes for the correct class minus max. proportion of votes for other classes. 1 means that, for the sample, all the votes were correct. See, by colors, which observations were off. For one variable, could have a margin of 0.8, meaning that a few were off, compared to 0.2, an observation consistently misclassified. 
 
 ```{r}
 plot(margin(rf1))
