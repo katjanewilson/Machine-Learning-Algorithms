@@ -55,6 +55,70 @@
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -73,7 +137,17 @@
 <li><a href="./">SHORT TITLE HERE</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Random Forest</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Random Forest</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#plot"><i class="fa fa-check"></i><b>1.1</b> plot</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#data-split"><i class="fa fa-check"></i><b>1.1.1</b> Data split</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#rf-on-the-training-set"><i class="fa fa-check"></i><b>1.1.2</b> RF on the training set</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#variable-importance"><i class="fa fa-check"></i><b>1.1.3</b> Variable Importance</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#margin-of-predictions"><i class="fa fa-check"></i><b>1.2</b> margin of predictions</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#validation-set"><i class="fa fa-check"></i><b>1.3</b> validation set</a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="support-vector-machine.html"><a href="support-vector-machine.html"><i class="fa fa-check"></i><b>2</b> support vector machine</a></li>
 <li class="chapter" data-level="3" data-path="naive-bayes.html"><a href="naive-bayes.html"><i class="fa fa-check"></i><b>3</b> naive bayes</a></li>
 <li class="divider"></li>
@@ -101,8 +175,81 @@
 <p class="date"><em>2022-01-24</em></p>
 </div>
 <div id="random-forest" class="section level1" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Random Forest</h1>
+<h1><span class="header-section-number"> 1</span> Random Forest</h1>
+<div id="plot" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> plot</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;randomForest&quot;)</span></span>
+<span id="cb1-2"><a href="index.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(randomForest)</span></code></pre></div>
+<pre><code>## randomForest 4.6-14</code></pre>
+<pre><code>## Type rfNews() to see new features/changes/bug fixes.</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="index.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb4-2"><a href="index.html#cb4-2" aria-hidden="true" tabindex="-1"></a>iris.rf <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(iris[,<span class="sc">-</span><span class="dv">5</span>], iris[,<span class="dv">5</span>],<span class="at">prox =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-3"><a href="index.html#cb4-3" aria-hidden="true" tabindex="-1"></a>iris.p <span class="ot">&lt;-</span> <span class="fu">classCenter</span>(iris[,<span class="sc">-</span><span class="dv">5</span>], iris[,<span class="dv">5</span>], iris.rf<span class="sc">$</span>prox)</span>
+<span id="cb4-4"><a href="index.html#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(iris[,<span class="dv">3</span>], iris[,<span class="dv">4</span>], <span class="at">pch=</span><span class="dv">21</span>, <span class="at">xlab=</span><span class="fu">names</span>(iris)[<span class="dv">3</span>], <span class="at">ylab=</span><span class="fu">names</span>(iris)[<span class="dv">4</span>],</span>
+<span id="cb4-5"><a href="index.html#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="at">bg=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>)[<span class="fu">as.numeric</span>(<span class="fu">factor</span>(iris<span class="sc">$</span>Species))],</span>
+<span id="cb4-6"><a href="index.html#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="at">main=</span><span class="st">&quot;Iris Data with Prototypes&quot;</span>)</span>
+<span id="cb4-7"><a href="index.html#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(iris.p[,<span class="dv">3</span>], iris.p[,<span class="dv">4</span>], <span class="at">pch=</span><span class="dv">21</span>, <span class="at">cex=</span><span class="dv">2</span>, <span class="at">bg=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<div id="data-split" class="section level3" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Data split</h3>
+<p>randomForest package. Does not split by training and testing data.</p>
+<p>Note: curse of dimensionality: data becomes more sparse as you increase then ubmer of features considered, which might lead to overfitting. Ratio of positives to negatives is important for classification. Also missing values</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="index.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set random seed to make results reproducible:</span></span>
+<span id="cb5-2"><a href="index.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">17</span>)</span>
+<span id="cb5-3"><a href="index.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the size of each of the data sets:</span></span>
+<span id="cb5-4"><a href="index.html#cb5-4" aria-hidden="true" tabindex="-1"></a>data_set_size <span class="ot">&lt;-</span> <span class="fu">floor</span>(<span class="fu">nrow</span>(iris)<span class="sc">/</span><span class="dv">2</span>)</span>
+<span id="cb5-5"><a href="index.html#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a random sample of &quot;data_set_size&quot; indexes</span></span>
+<span id="cb5-6"><a href="index.html#cb5-6" aria-hidden="true" tabindex="-1"></a>indexes <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(iris), <span class="at">size =</span> data_set_size)</span>
+<span id="cb5-7"><a href="index.html#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign the data to the correct sets</span></span>
+<span id="cb5-8"><a href="index.html#cb5-8" aria-hidden="true" tabindex="-1"></a>training <span class="ot">&lt;-</span> iris[indexes,]</span>
+<span id="cb5-9"><a href="index.html#cb5-9" aria-hidden="true" tabindex="-1"></a>validation1 <span class="ot">&lt;-</span> iris[<span class="sc">-</span>indexes,]</span></code></pre></div>
+</div>
+<div id="rf-on-the-training-set" class="section level3" number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> RF on the training set</h3>
+<p>mtry refers to number of features used in the construction of the tree, they are selected at random . 5/75 were misclassified (6.67%), which is OOB estimates. With more features, use cross validaiton to select important feature selection.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="index.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb6-2"><a href="index.html#cb6-2" aria-hidden="true" tabindex="-1"></a>rf1 <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(Species <span class="sc">~</span> ., <span class="at">data =</span> training, <span class="at">ntree=</span><span class="dv">100</span>, <span class="at">mtry =</span> <span class="dv">2</span>,</span>
+<span id="cb6-3"><a href="index.html#cb6-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">importance =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-4"><a href="index.html#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="index.html#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(rf1)</span></code></pre></div>
+<pre><code>## 
+## Call:
+##  randomForest(formula = Species ~ ., data = training, ntree = 100,      mtry = 2, importance = TRUE) 
+##                Type of random forest: classification
+##                      Number of trees: 100
+## No. of variables tried at each split: 2
+## 
+##         OOB estimate of  error rate: 6.67%
+## Confusion matrix:
+##            setosa versicolor virginica class.error
+## setosa         27          0         0  0.00000000
+## versicolor      0         22         2  0.08333333
+## virginica       0          3        21  0.12500000</code></pre>
+</div>
+<div id="variable-importance" class="section level3" number="1.1.3">
+<h3><span class="header-section-number">1.1.3</span> Variable Importance</h3>
+<p>MeanDecrease Accuracy: estimate of the loss in prediction performane when that particular variable is omitted from training set.
+MeanDecrease Gini: node impurity. High purity means each node contains only elements of a single class. Decase in Gini when that feature is omitted leads to understanding of how important that feature is to split the data correctly.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="index.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">varImpPlot</span>(rf1)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+</div>
+<div id="margin-of-predictions" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> margin of predictions</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="index.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">margin</span>(rf1))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div id="validation-set" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> validation set</h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="index.html#cb10-1" aria-hidden="true" tabindex="-1"></a>prediction_for_table <span class="ot">&lt;-</span> <span class="fu">predict</span>(rf1, validation1[,<span class="sc">-</span><span class="dv">5</span>])</span>
+<span id="cb10-2"><a href="index.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="at">observed=</span>validation1[,<span class="dv">5</span>],<span class="at">predicted =</span> prediction_for_table)</span></code></pre></div>
+<pre><code>##             predicted
+## observed     setosa versicolor virginica
+##   setosa         23          0         0
+##   versicolor      0         26         0
+##   virginica       0          3        23</code></pre>
 
+</div>
 </div>
             </section>
 

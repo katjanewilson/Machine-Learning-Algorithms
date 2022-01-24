@@ -2,3 +2,9 @@ random-forest
 support-vector-machine
 naive-bayes
 naive-bayes-1
+variable-importance
+margin-of-predictions
+plot
+data-split
+rf-on-the-training-set
+validation-set

@@ -7,3 +7,69 @@ site: bookdown::bookdown_site
 
 # Random Forest
 
+## plot 
+
+```{r}
+# install.packages("randomForest")
+library(randomForest)
+data(iris)
+iris.rf <- randomForest(iris[,-5], iris[,5],prox = TRUE)
+iris.p <- classCenter(iris[,-5], iris[,5], iris.rf$prox)
+plot(iris[,3], iris[,4], pch=21, xlab=names(iris)[3], ylab=names(iris)[4],
+bg=c("red", "blue", "green")[as.numeric(factor(iris$Species))],
+main="Iris Data with Prototypes")
+points(iris.p[,3], iris.p[,4], pch=21, cex=2, bg=c("red", "blue", "green"))
+```
+
+### Data split
+randomForest package. Does not split by training and testing data. 
+
+Note: curse of dimensionality: data becomes more sparse as you increase then ubmer of features considered, which might lead to overfitting. Ratio of positives to negatives is important for classification. Also missing values
+
+```{r}
+# Set random seed to make results reproducible:
+set.seed(17)
+# Calculate the size of each of the data sets:
+data_set_size <- floor(nrow(iris)/2)
+# Generate a random sample of "data_set_size" indexes
+indexes <- sample(1:nrow(iris), size = data_set_size)
+# Assign the data to the correct sets
+training <- iris[indexes,]
+validation1 <- iris[-indexes,]
+```
+
+### RF on the training set 
+
+mtry refers to number of features used in the construction of the tree, they are selected at random . 5/75 were misclassified (6.67%), which is OOB estimates. With more features, use cross validaiton to select important feature selection. 
+
+```{r}
+data(iris)
+rf1 <- randomForest(Species ~ ., data = training, ntree=100, mtry = 2,
+                    importance = TRUE)
+
+print(rf1)
+```
+### Variable Importance 
+
+MeanDecrease Accuracy: estimate of the loss in prediction performane when that particular variable is omitted from training set. 
+MeanDecrease Gini: node impurity. High purity means each node contains only elements of a single class. Decase in Gini when that feature is omitted leads to understanding of how important that feature is to split the data correctly.
+
+```{r}
+varImpPlot(rf1)
+```
+
+## margin of predictions 
+
+```{r}
+plot(margin(rf1))
+```
+
+## validation set
+
+```{r}
+prediction_for_table <- predict(rf1, validation1[,-5])
+table(observed=validation1[,5],predicted = prediction_for_table)
+```
+
+
+
