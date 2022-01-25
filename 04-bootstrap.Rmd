@@ -1,3 +1,50 @@
 # bootstrap
 
 
+```{r}
+library(boot)
+
+#function to obtain R-square from the data
+
+rsq <- function(formula, data, indices ) {
+  d <- data[indices,] #allows the boot to select sample
+  fit <- lm(formula, data = d)
+  return(summary(fit)$r.square)
+}
+
+#bootstrapping with 1000 replications
+
+results <- boot(data = mtcars, statistic = rsq,
+                R = 1000, formula=mpg~wt+disp)
+
+#view results
+plot(results)
+
+#get 95%confidence interval
+boot.ci(results, type = "bca")
+
+
+################################
+#bootstrapping with several statistics
+#this will get the 95% confidence interval for the three model regression coefficients
+#and then add an index parameter to plot() and boot.ci()
+
+library(boot)
+#function to obtain regressio nweights
+bs <- function(formula, data, indices) {
+  d <- data[indices,] #allows boot to select sample
+  fit <- lm(formula, data = d)
+  return(coef(fit))
+}
+
+
+#bootstrapping with 1000 replications
+results <- boot(data = mtcars, statistic = bs,
+                R = 1000, formula = mpg~wt+disp)
+
+#view results
+results
+plot(results, index = 1) #intercept
+plot(results, index = 2) #wt
+
+```

@@ -10,3 +10,14 @@ rf-on-the-training-set
 validation-set
 margin
 bootstrap
+predictions
+svm-approach
+incorrect-model
+correct-model
+predictions-1
+support-vector-machine-1
+applied-example
+linear-kernal
+class.weights
+boosting
+boosting-1

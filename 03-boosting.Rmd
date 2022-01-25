@@ -1,0 +1,41 @@
+# boosting
+
+
+```{r message=FALSE, warning=FALSE}
+
+##Boosting
+
+library(car)
+data(Arrests)
+summary(Arrests)
+
+#### you have to do this step first!
+Arrests$released <- as.numeric(Arrests$released) -1
+
+#install.packages("gbm")
+library(gbm)
+?gbm
+gbm1 <- gbm(released ~., data = Arrests, distribution = "bernoulli",
+            n.trees = 500, interaction.depth = 5, n.minobsinnode = 1,
+            bag.fraction = 0.5, train.fraction = .75, n.cores = 8)
+best.iter <- gbm.perf(gbm1, method = "OOB")
+?gbm
+print(best.iter)
+gbm1
+summary(gbm1)
+preds <- predict(gbm1, newdata = Arrests, n.trees = best.iter, type = "response")
+table(Arrests$released, preds >.5)
+plot(gbm1, i.var = 1, n.trees = best.iter, type = "response")
+plot(gbm1, i.var = 3, n.trees = best.iter, type = "response")
+library(pdp)
+pd <- pdp::partial(gbm1, pred.var = "age", n.trees = best.iter, type = "classification")
+pd <- pdp::partial(gbm1, pred.var = "age", n.trees = best.iter, type = "classification")
+#which.class = 2L #which class does not work in the binary case
+plotPartial(pd, smooth = T, lwd = 3, chull = T, train = Arrests, rug = T,
+            xlab = "Age in Year", ylab = "Fitted Probability of release")
+pd <- pdp::partial(gbm1, pred.var = "checks", n.trees = best.iter, type = "classification")
+plotPartial(pd, smooth = T, lwd = 3, chull = T, train = Arrests, rug = T,
+            xlab = "Number of Checks", ylab = "Fitted Probability of release")
+
+
+```
